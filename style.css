@@ -11,6 +11,7 @@ body {
     background-color: #121212;
     color: #e0e0e0;
     line-height: 1.6;
+    cursor: none; /* 기본 커서 숨기기 */
 }
 
 .container {
@@ -91,17 +92,26 @@ body {
     gap: 1.5rem;
 }
 
+/* 포트폴리오 링크 스타일 초기화 */
+.portfolio-link {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* 링크가 그리드 영역을 꽉 채우도록 */
+}
+
 .portfolio-item {
     position: relative;
     overflow: hidden;
-    cursor: pointer;
+    cursor: none;
     border-radius: 8px;
     background-color: #1f1f1f;
+    height: 100%; /* 그리드 아이템 높이를 통일 */
 }
 
 .portfolio-item img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover; /* 이미지가 잘리더라도 비율에 맞게 꽉 채움 */
     display: block;
     transition: transform 0.4s ease;
 }
@@ -139,19 +149,197 @@ body {
     margin-top: 2rem;
     border-top: 1px solid #333;
 }
+
 /*
 ================================
-About Page & Scroll Reveal 효과
+Scroll Reveal 효과
 ================================
 */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
 
-/* '소개' 페이지 전용 레이아웃 */
+.reveal-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*
+================================
+Custom Mouse Cursor
+================================
+*/
+.custom-cursor {
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 50%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    pointer-events: none;
+    transition: transform 0.5s ease-out, background-color 0.2s ease, mix-blend-mode 0.2s ease;
+    transform: translate(-50%, -50%); 
+}
+
+.custom-cursor.grow {
+    transform: translate(-50%, -50%) scale(2);
+    background-color: white;
+    mix-blend-mode: difference;
+}
+/* 기본 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 전체 폰트 및 배경색 설정 */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+    cursor: none; /* 기본 커서 숨기기 */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 헤더 & 네비게이션 */
+.header {
+    background-color: #1f1f1f;
+    padding: 1rem 0;
+    border-bottom: 1px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.header nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.header nav a:hover,
+.header nav a.active { /* '소개' 페이지에서 활성화된 링크 스타일 */
+    color: #4d90fe;
+}
+
+/* 메인 섹션 - 히어로 */
+.hero {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #181818;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* 포트폴리오 섹션 */
+.portfolio-section {
+    padding: 4rem 0;
+}
+
+.portfolio-section h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: #fff;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.portfolio-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+    border-radius: 8px;
+    background-color: #1f1f1f;
+    height: 100%;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover .overlay {
+    transform: translateY(0);
+}
+
+.overlay h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+/* '소개' 페이지 섹션 스타일 */
 .about-container {
     padding: 4rem 0;
 }
 .about-section {
     max-width: 800px;
-    margin: 0 auto 4rem auto; /* 섹션 간 간격 */
+    margin: 0 auto 4rem auto;
     padding: 2rem;
     background-color: #1f1f1f;
     border-radius: 8px;
@@ -179,14 +367,52 @@ About Page & Scroll Reveal 효과
 }
 
 
-/* 스크롤 리빌 효과를 위한 CSS */
+/* 푸터 */
+.footer {
+    background-color: #1f1f1f;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid #333;
+}
+
+/*
+================================
+Scroll Reveal 효과
+================================
+*/
 .reveal-item {
-    opacity: 0; /* 기본적으로 투명하게 */
-    transform: translateY(30px); /* 살짝 아래에서 시작 */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* 부드러운 전환 효과 */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
 }
 
 .reveal-item.visible {
-    opacity: 1; /* 화면에 보이면 불투명하게 */
-    transform: translateY(0); /* 제자리로 이동 */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*
+================================
+Custom Mouse Cursor
+================================
+*/
+.custom-cursor {
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 50%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    pointer-events: none;
+    transition: transform 0.5s ease-out, background-color 0.2s ease, mix-blend-mode 0.2s ease;
+    transform: translate(-50%, -50%); 
+}
+
+.custom-cursor.grow {
+    transform: translate(-50%, -50%) scale(2);
+    background-color: white;
+    mix-blend-mode: difference;
 }
