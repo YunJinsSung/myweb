@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나의 포트폴리오</title>
+    <title>Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="main-header">
         <div class="header-container">
             <div class="website-name">
-                <a href="/">My Portfolio</a>
+                <a href="/">Portfolio</a>
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="page1.html">내 정보</a></li>
-                    <li><a href="#page2.html">포트폴리오</a></li>
-                    <li><a href="#page3.html">문의</a></li>
+                    <li><a href="page1.html">Page</a></li>
+                    <li><a href="page2.html">Page 2</a></li>
+                    <li><a href="page3.html">Page 3</a></li>
+                    <li><a href="page4.html">Page 4</a></li>
                 </ul>
             </nav>
             <button class="menu-toggle" aria-label="메뉴 열기">
@@ -28,41 +30,27 @@
     </header>
 
     <main class="hero-section">
-        <h1>환영합니다!</h1>
-        <p>나의 포트폴리오 웹사이트에 오신 것을 환영합니다.</p>
-        <p>이곳에 당신의 멋진 작업물들을 소개할 수 있습니다.</p>
+        <div class="background-media"></div>
+        <div class="background-overlay"></div>
+
+        <div class="hero-content">
+            <h1 class="main-title">혁신을 추구하는<br>당신의 파트너</h1>
+            <p class="subtitle">최고의 기술과 디자인으로 당신의 비전을 현실로 만듭니다.</p>
+            <a href="#" class="cta-button">프로젝트 보기</a>
+        </div>
     </main>
 
     <div class="mobile-menu-overlay">
         <nav class="mobile-nav">
             <ul>
-                <li><a href="#page1">Page 1</a></li>
-                <li><a href="#page2">Page 2</a></li>
-                <li><a href="#page3">Page 3</a></li>
-                <li><a href="#page4">Page 4</a></li>
+                <li><a href="page1.html">Page 1</a></li>
+                <li><a href="page2.html">Page 2</a></li>
+                <li><a href="page3.html">Page 3</a></li>
+                <li><a href="page4.html">Page 4</a></li>
             </ul>
         </nav>
     </div>
 
-    <script>
-        // JavaScript로 메뉴 토글 기능 추가 (선택 사항)
-        const menuToggle = document.querySelector('.menu-toggle');
-        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            mobileMenuOverlay.classList.toggle('active');
-            document.body.classList.toggle('no-scroll'); // 메뉴 열렸을 때 스크롤 방지
-        });
-
-        // 모바일 메뉴 항목 클릭 시 메뉴 닫기
-        mobileMenuOverlay.querySelectorAll('a').forEach(item => {
-            item.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                mobileMenuOverlay.classList.remove('active');
-                document.body.classList.remove('no-scroll');
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
