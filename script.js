@@ -1,48 +1,43 @@
 // script.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    // DOMContentLoaded는 HTML 문서가 완전히 로드되고 파싱되었을 때 발생합니다.
-    // 이는 JavaScript가 필요한 HTML 요소를 찾을 수 있음을 보장합니다.
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-    // 메뉴 토글 기능
-    const menuToggle = document.querySelector('.menu-toggle');
-    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+    portfolioItems.forEach(item => {
+        item.addEventListener('click', () => {
+            // 클릭한 아이템의 제목과 설명을 가져옵니다.
+            const title = item.querySelector('h4').innerText;
+            const description = item.querySelector('p').innerText;
 
-    if (menuToggle && mobileMenuOverlay) { // 요소가 존재하는지 확인 (안전성)
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            mobileMenuOverlay.classList.toggle('active');
-            document.body.classList.toggle('no-scroll'); // 메뉴 열렸을 때 스크롤 방지
+            // 지금은 간단히 alert로 보여주지만,
+            // 나중에 이 부분에 상세 내용을 보여주는 모달(팝업) 창을 띄우는 코드를 추가할 수 있습니다.
+            alert(`프로젝트: ${title}\n설명: ${description}`);
         });
-    }
+    });
+});
+// 스크롤 리빌 효과 로직
+const revealItems = document.querySelectorAll('.reveal-item');
 
-    // 모바일 메뉴 항목 클릭 시 메뉴 닫기
-    if (mobileMenuOverlay) {
-        mobileMenuOverlay.querySelectorAll('a').forEach(item => {
-            item.addEventListener('click', () => {
-                // 클릭된 링크의 href가 #으로 시작하면 (같은 페이지 내 이동) 메뉴 닫기
-                if (item.getAttribute('href').startsWith('#')) {
-                    if (menuToggle) menuToggle.classList.remove('active');
-                    mobileMenuOverlay.classList.remove('active');
-                    document.body.classList.remove('no-scroll');
-                }
-            });
-        });
-    }
+const revealOnScroll = (entries, observer) => {
+    entries.forEach(entry => {
+        // isIntersecting: 요소가 뷰포트와 교차하는지 (즉, 보이는지) 여부
+        if (entry.isIntersecting) {
+            // 보이는 요소에 'visible' 클래스 추가
+            entry.target.classList.add('visible');
+            // 한 번 나타난 요소는 더 이상 관찰할 필요가 없으므로 관찰 중지 (성능 최적화)
+            observer.unobserve(entry.target);
+        }
+    });
+};
 
-    // 스크롤 시 헤더 배경 변경 기능
-    const headerContainer = document.querySelector('.header-container');
+// Intersection Observer 생성
+const observer = new IntersectionObserver(revealOnScroll, {
+    root: null, // 뷰포트를 기준으로
+    rootMargin: '0px',
+    threshold: 0.1 // 요소가 10% 보였을 때 콜백 함수 실행
+});
 
-    if (headerContainer) { // 요소가 존재하는지 확인 (안전성)
-        window.addEventListener('scroll', () => {
-            // console.log("Scrolling detected! Current scrollY:", window.scrollY); // 디버깅용
-            if (window.scrollY > 50) { // 50px 이상 스크롤 시
-                headerContainer.classList.add('scrolled');
-                // console.log("Scrolled class added!"); // 디버깅용
-            } else { // 다시 50px 미만으로 돌아오면
-                headerContainer.classList.remove('scrolled');
-                // console.log("Scrolled class removed!"); // 디버깅용
-            }
-        });
-    }
+// 모든 reveal-item 요소에 대해 관찰 시작
+revealItems.forEach(item => {
+    observer.observe(item);
 });

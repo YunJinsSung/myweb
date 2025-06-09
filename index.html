@@ -3,53 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>포트폴리오</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="main-header">
-        <div class="header-container">
-            <div class="website-name">
-                <a href="/">Portfolio</a>
-            </div>
-            <nav class="main-nav">
+
+    <header class="header">
+        <div class="container">
+            <h1><a href="#">My Portfolio</a></h1>
+            <nav>
                 <ul>
-                    <li><a href="page1.html">Page</a></li>
-                    <li><a href="page2.html">Page 2</a></li>
-                    <li><a href="page3.html">Page 3</a></li>
-                    <li><a href="page4.html">Page 4</a></li>
+                    <li><a href="page1.html">소개</a></li>
+                    <li><a href="#portfolio">포트폴리오</a></li>
+                    <li><a href="#contact">연락처</a></li>
                 </ul>
             </nav>
-            <button class="menu-toggle" aria-label="메뉴 열기">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
 
-    <main class="hero-section">
-        <div class="background-media"></div>
-        <div class="background-overlay"></div>
+    <main>
+        <section id="about" class="hero">
+            <div class="container">
+                <h2>끊임없이 성장하는 윤진성입니다.</h2>
+                <p>사용자 중심의 직관적인 웹 경험을 만드는 것을 좋아합니다.</p>
+            </div>
+        </section>
 
-        <div class="hero-content">
-            <h1 class="main-title">혁신을 추구하는<br>당신의 파트너</h1>
-            <p class="subtitle">최고의 기술과 디자인으로 당신의 비전을 현실로 만듭니다.</p>
-            <a href="#" class="cta-button">프로젝트 보기</a>
-        </div>
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <h3>PORTFOLIO</h3>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/400x300" alt="프로젝트 썸네일">
+                        <div class="overlay">
+                            <h4>프로젝트 제목 1</h4>
+                            <p>간단한 프로젝트 설명</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/400x300" alt="프로젝트 썸네일">
+                        <div class="overlay">
+                            <h4>프로젝트 제목 2</h4>
+                            <p>HTML, CSS 기반 반응형 웹사이트</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/400x300" alt="프로젝트 썸네일">
+                        <div class="overlay">
+                            <h4>프로젝트 제목 3</h4>
+                            <p>JavaScript 동적 기능 구현</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/400x300" alt="프로젝트 썸네일">
+                        <div class="overlay">
+                            <h4>프로젝트 제목 4</h4>
+                            <p>Python/Django 백엔드 연동</p>
+                        </div>
+                    </div>
+                     <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/400x300" alt="프로젝트 썸네일">
+                        <div class="overlay">
+                            <h4>프로젝트 제목 5</h4>
+                            <p>간단한 프로젝트 설명</p>
+                        </div>
+                    </div>
+                     <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/400x300" alt="프로젝트 썸네일">
+                        <div class="overlay">
+                            <h4>프로젝트 제목 6</h4>
+                            <p>간단한 프로젝트 설명</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <div class="mobile-menu-overlay">
-        <nav class="mobile-nav">
-            <ul>
-                <li><a href="page1.html">Page 1</a></li>
-                <li><a href="page2.html">Page 2</a></li>
-                <li><a href="page3.html">Page 3</a></li>
-                <li><a href="page4.html">Page 4</a></li>
-            </ul>
-        </nav>
-    </div>
+    <footer id="contact" class="footer">
+        <div class="container">
+            <p>Email: yun64560276@gmail.com</p>
+            <p>&copy; 2025 OOO. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

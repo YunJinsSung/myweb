@@ -1,257 +1,192 @@
-/* style.css */
-
-/* 기본 설정 및 변수 */
-:root {
-    --color-dark-blue: #0A192F; /* 어두운 배경색 (거의 검정에 가까운 남색) */
-    --color-primary-blue: #007bff; /* 주된 파란색 (버튼, 링크 호버 등) */
-    --color-light-blue: #61DAFB; /* 강조 및 액센트 파란색 (제목, 로고 등) */
-    --color-text-light: #E6F1FF; /* 밝은 텍스트 색상 (약간 푸른기) */
-    --color-text-dark: #333333; /* 어두운 텍스트 색상 (현재 거의 사용 안 됨) */
-    --color-accent-red: #FF6B6B; /* 버튼 등 강조색 (빨간색) */
-}
-
-/* 모든 요소에 box-sizing 적용 */
+/* 기본 스타일 초기화 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 기본 body 스타일 */
+/* 전체 폰트 및 배경색 설정 */
 body {
-    font-family: 'Noto Sans KR', sans-serif; /* 한글 폰트 */
-    color: var(--color-text-light); /* 기본 텍스트 색상 */
-    overflow-x: hidden; /* 가로 스크롤 방지 */
-    line-height: 1.6; /* 줄 간격 */
-    background-color: var(--color-dark-blue); /* 전체 배경색 */
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
 }
 
-/* 메뉴가 열렸을 때 스크롤 방지용 클래스 */
-body.no-scroll {
-    overflow: hidden;
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* 링크 기본 스타일 */
-a {
-    text-decoration: none; /* 밑줄 제거 */
-    color: inherit; /* 부모 요소 색상 상속 */
-}
-
-/* 헤더 영역 */
-.main-header {
-    background-color: transparent; /* 초기에는 투명 */
-    padding: 20px 0;
-    position: fixed; /* 화면 상단 고정 */
-    width: 100%;
+/* 헤더 & 네비게이션 */
+.header {
+    background-color: #1f1f1f;
+    padding: 1rem 0;
+    border-bottom: 1px solid #333;
+    position: sticky;
     top: 0;
-    left: 0;
-    z-index: 1000; /* 다른 요소 위에 오도록 */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* 배경색, 그림자 부드러운 전환 */
+    z-index: 100;
 }
 
-/* 헤더 컨테이너 (내부 요소 정렬용) */
-.main-header .header-container {
+.header .container {
     display: flex;
-    justify-content: space-between; /* 양 끝 정렬 */
-    align-items: center; /* 세로 중앙 정렬 */
-    max-width: 1400px; /* 최대 너비 제한 */
-    margin: 0 auto; /* 가로 중앙 정렬 */
-    padding: 0 40px; /* 좌우 여백 */
-    transition: padding 0.3s ease; /* 스크롤 시 패딩 변화 부드럽게 */
-}
-
-/* 스크롤 시 헤더 컨테이너 스타일 */
-.main-header .header-container.scrolled {
-    background-color: rgba(10, 25, 47, 0.95); /* 스크롤 시 진한 배경, 불투명도 */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 스크롤 시 그림자 */
-    /* padding: 15px 40px; /* 선택 사항: 스크롤 시 헤더 높이 줄이기 (이전 패딩 값과 다르게 설정) */
-}
-
-/* 웹사이트 이름 (로고) */
-.website-name a {
-    color: var(--color-light-blue); /* 강조색 파란색 */
-    font-family: 'Montserrat', sans-serif; /* 영문 폰트 */
-    font-size: 2.2em;
-    font-weight: 700; /* 굵게 */
-    letter-spacing: -0.05em; /* 자간 조절 */
-    transition: color 0.3s ease;
-}
-
-.website-name a:hover {
-    color: #fff; /* 호버 시 흰색 */
-}
-
-/* 메인 내비게이션 (데스크톱용 Page 1 2 3 4) */
-.main-nav {
-    flex-grow: 1; /* 남은 공간을 채워 중앙 정렬 유도 */
-    display: flex;
-    justify-content: center; /* ul을 중앙으로 */
-    margin: 0 40px; /* 로고와 버튼 사이 간격 확보 */
-}
-
-.main-nav ul {
-    list-style: none; /* 목록 마커 제거 */
-    display: flex;
-    gap: 40px; /* 메뉴 항목 간 간격 */
-}
-
-.main-nav a {
-    color: var(--color-text-light);
-    font-size: 1.05em;
-    padding: 8px 0;
-    position: relative; /* 밑줄 효과를 위해 */
-    transition: color 0.3s ease;
-    font-weight: 400; /* 일반 굵기 */
-}
-
-/* 메뉴 항목 호버 시 밑줄 효과 */
-.main-nav a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -3px; /* 밑줄 위치 */
-    width: 0;
-    height: 2px;
-    background-color: var(--color-light-blue);
-    transition: width 0.3s ease; /* 너비 변화 부드럽게 */
-}
-
-.main-nav a:hover {
-    color: var(--color-light-blue);
-}
-
-.main-nav a:hover::after {
-    width: 100%; /* 호버 시 밑줄 전체 너비로 확장 */
-}
-
-/* 메뉴 토글 버튼 (햄버거 아이콘) */
-.menu-toggle {
-    background: none; /* 배경 없음 */
-    border: none; /* 테두리 없음 */
-    width: 32px;
-    height: 24px;
-    position: relative;
-    cursor: pointer;
-    display: none; /* 기본적으로는 숨김 (데스크톱에서는 안 보임) */
-    flex-direction: column;
-    justify-content: space-between; /* 스팬 사이 간격 */
-    padding: 0;
-    z-index: 1001; /* 다른 요소 위에 */
-}
-
-.menu-toggle span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: var(--color-text-light); /* 햄버거 선 색상 */
-    border-radius: 2px;
-    transition: all 0.3s ease-in-out; /* 모든 변화 부드럽게 */
-}
-
-/* 햄버거 메뉴가 X 버튼으로 변하는 애니메이션 */
-.menu-toggle.active span:nth-child(1) {
-    transform: translateY(10px) rotate(45deg);
-}
-.menu-toggle.active span:nth-child(2) {
-    opacity: 0; /* 가운데 선 숨김 */
-}
-.menu-toggle.active span:nth-child(3) {
-    transform: translateY(-10px) rotate(-45deg);
-}
-
-
-/* 히어로 섹션 (메인 콘텐츠 영역) */
-.hero-section {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    min-height: 100vh; /* 뷰포트 전체 높이 */
-    text-align: center;
-    padding-top: 80px; /* 헤더 높이만큼 여백 */
-    overflow: hidden; /* 내용 넘침 방지 */
-    color: var(--color-text-light);
 }
 
-/* 배경 미디어 (이미지 또는 비디오) */
-.background-media {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2; /* 오버레이보다 뒤로 */
-    background: url('https://source.unsplash.com/random/1920x1080?abstract,tech') no-repeat center center/cover; /* Unsplash 랜덤 추상/기술 이미지 */
-    opacity: 0.3; /* 배경 이미지 투명도 */
-    filter: brightness(0.7) contrast(1.2); /* 배경 이미지 밝기, 대비 조절 */
+.header h1 a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.5rem;
 }
 
-/* 배경 오버레이 (색상 필터) */
-.background-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* 미디어보다 위, 콘텐츠보다 뒤 */
-    background: linear-gradient(145deg, rgba(10, 25, 47, 0.8) 0%, rgba(0, 123, 255, 0.4) 50%, rgba(10, 25, 47, 0.8) 100%);
-}
-
-/* 히어로 섹션 내부 콘텐츠 */
-.hero-content {
-    position: relative;
-    z-index: 1; /* 콘텐츠가 배경 위에 오도록 */
-    max-width: 900px;
-    padding: 20px;
-}
-
-.main-title {
-    font-family: 'Montserrat', sans-serif; /* 영문 폰트 */
-    font-size: 4.8em;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 25px;
-    color: var(--color-light-blue); /* 밝은 파란색 */
-    text-shadow: 0 0 15px rgba(97, 218, 251, 0.5); /* 은은한 발광 효과 */
-}
-
-.subtitle {
-    font-size: 1.5em;
-    font-weight: 300;
-    margin-bottom: 40px;
-    color: rgba(var(--color-text-light), 0.8); /* 텍스트 약간 투명하게 */
-}
-
-/* CTA (Call-to-Action) 버튼 */
-.cta-button {
-    display: inline-block;
-    background-color: var(--color-accent-red); /* 강조 빨간색 */
-    color: var(--color-text-light);
-    padding: 18px 45px;
-    border-radius: 50px; /* 둥근 버튼 */
-    font-size: 1.1em;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    transition: background-color 0.3s ease, transform 0.2s ease; /* 부드러운 전환 */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
-}
-
-.cta-button:hover {
-    background-color: #FF4747; /* 호버 시 약간 밝게 */
-    transform: translateY(-3px); /* 살짝 위로 */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* 그림자 더 깊게 */
-}
-
-/* 모바일 메뉴 오버레이 (햄버거 버튼 클릭 시 나타남) */
-.mobile-menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(10, 25, 47, 0.98); /* 거의 불투명한 배경 */
-    backdrop-filter: blur(8px); /* 배경 블러 효과 */
+.header nav ul {
+    list-style: none;
     display: flex;
+    gap: 1.5rem;
+}
+
+.header nav a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.header nav a:hover {
+    color: #4d90fe;
+}
+
+/* 메인 섹션 */
+.hero {
+    height: 300px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    
+    text-align: center;
+    background-color: #181818;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* 포트폴리오 섹션 */
+.portfolio-section {
+    padding: 4rem 0;
+}
+
+.portfolio-section h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: #fff;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: #1f1f1f;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover .overlay {
+    transform: translateY(0);
+}
+
+.overlay h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+/* 푸터 */
+.footer {
+    background-color: #1f1f1f;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid #333;
+}
+/*
+================================
+About Page & Scroll Reveal 효과
+================================
+*/
+
+/* '소개' 페이지 전용 레이아웃 */
+.about-container {
+    padding: 4rem 0;
+}
+.about-section {
+    max-width: 800px;
+    margin: 0 auto 4rem auto; /* 섹션 간 간격 */
+    padding: 2rem;
+    background-color: #1f1f1f;
+    border-radius: 8px;
+}
+.about-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #4d90fe;
+}
+.skills-list, .timeline {
+    list-style: none;
+}
+.skills-list li {
+    background-color: #333;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+}
+.timeline-item {
+    margin-bottom: 1rem;
+}
+.timeline-item h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+
+/* 스크롤 리빌 효과를 위한 CSS */
+.reveal-item {
+    opacity: 0; /* 기본적으로 투명하게 */
+    transform: translateY(30px); /* 살짝 아래에서 시작 */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* 부드러운 전환 효과 */
+}
+
+.reveal-item.visible {
+    opacity: 1; /* 화면에 보이면 불투명하게 */
+    transform: translateY(0); /* 제자리로 이동 */
+}
