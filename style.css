@@ -416,3 +416,239 @@ Custom Mouse Cursor
     background-color: white;
     mix-blend-mode: difference;
 }
+/*
+================================
+Hero Background Slider
+================================
+*/
+.hero {
+    /* 자식 요소를 position: absolute로 배치하기 위한 기준점 */
+    position: relative; 
+    /* 슬라이더 이미지가 넘칠 경우를 대비 */
+    overflow: hidden; 
+}
+
+/* 텍스트가 이미지 위에 올라오도록 z-index 설정 */
+.hero .container {
+    position: relative; /* z-index를 적용하기 위해 필요 */
+    z-index: 2;
+}
+
+/* 이미지 슬라이더 컨테이너 */
+.hero-background-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* 텍스트보다 뒤에 있도록 설정 */
+}
+
+/* 슬라이더의 각 이미지 스타일 */
+.hero-background-slider img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 이미지가 잘리더라도 비율에 맞게 꽉 채움 */
+    opacity: 0; /* 기본적으로 모든 이미지를 투명하게 */
+    transition: opacity 1.5s ease-in-out; /* 1.5초 동안 부드럽게 나타나는 효과 */
+}
+
+/* 'active' 클래스를 가진 이미지만 보이게 함 */
+.hero-background-slider img.active {
+    opacity: 1;
+}
+
+/* (선택) 텍스트 가독성을 높이기 위한 어두운 오버레이 */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 50% 투명도의 검은색 배경 */
+    z-index: 1; /* 이미지 위, 텍스트 아래 */
+}
+/*
+================================
+Header Right-side & Hamburger Menu
+================================
+*/
+
+/* nav와 햄버거 버튼을 묶는 컨테이너 */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 25px; /* 메뉴와 햄버거 아이콘 사이의 간격 */
+}
+
+/* 햄버거 메뉴 버튼 기본 스타일 (이제 항상 보임) */
+.hamburger-menu {
+    display: block; /* 이제 display: none이 아님 */
+    width: 30px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.hamburger-menu span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 3px;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* 햄버거 선 3개 위치 */
+.hamburger-menu span:nth-child(1) { top: 0px; }
+.hamburger-menu span:nth-child(2) { top: 8px; }
+.hamburger-menu span:nth-child(3) { top: 16px; }
+
+
+/* JavaScript로 nav-open 클래스가 추가되었을 때의 X 모양 애니메이션 */
+body.nav-open .hamburger-menu span:nth-child(1) {
+    top: 8px;
+    transform: rotate(45deg);
+}
+body.nav-open .hamburger-menu span:nth-child(2) {
+    opacity: 0;
+}
+body.nav-open .hamburger-menu span:nth-child(3) {
+    top: 8px;
+    transform: rotate(-45deg);
+}
+/*
+================================
+Full Screen Overlay Menu
+================================
+*/
+/* 메뉴가 열렸을 때 뒤쪽 페이지 스크롤 방지 */
+body.nav-open {
+    overflow: hidden;
+}
+
+/* 메뉴 전체 컨테이너 */
+.overlay-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* vh는 화면 높이 기준 단위 */
+    background-color: #000; /* 검은색 배경 */
+    z-index: 1000; /* 다른 요소들보다 위, 커서보다는 아래 */
+    
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+
+    /* 애니메이션 효과 */
+    transform: translateY(-100%); /* 처음에는 화면 위쪽에 숨겨두기 */
+    transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* 메뉴가 열렸을 때 (nav-open 클래스가 body에 붙었을 때) */
+body.nav-open .overlay-menu {
+    transform: translateY(0); /* 아래로 내려오면서 화면을 덮음 */
+}
+
+.menu-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#close-menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+#close-menu-btn .close-icon {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #4d90fe;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 2rem;
+    line-height: 1;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#close-menu-btn:hover .close-icon {
+    background-color: #4d90fe;
+    color: #000;
+}
+
+
+.menu-content {
+    flex-grow: 1; /* 남은 공간을 모두 차지 */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+}
+
+.menu-nav ul {
+    list-style: none;
+}
+
+.menu-nav li a {
+    display: block;
+    font-size: 4rem; /* 큰 글씨 */
+    font-weight: 100; /* 아주 얇은 폰트 */
+    color: white;
+    text-decoration: none;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+}
+
+.menu-nav li a:hover,
+.menu-nav li a.active {
+    color: #4d90fe; /* 청록색 하이라이트 */
+}
+
+.menu-details {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.menu-details .detail-item {
+    margin-bottom: 2rem;
+}
+
+.menu-details .detail-item span {
+    display: block;
+    color: #888;
+    margin-bottom: 0.5rem;
+}
+
+.company-download-btn {
+    display: inline-block;
+    border: 1px solid #888;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.company-download-btn:hover {
+    background-color: white;
+    border-color: white;
+    color: #000;
+}
