@@ -3,69 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>소개 - 내 포트폴리오</title>
+    <title>소개 - 윤진성 포트폴리오</title>
     <link rel="stylesheet" href="style.css"> 
 </head>
-<body>
+<body class="no-scroll">
     <div class="custom-cursor"></div>
+
+    <div class="overlay-menu">
+        <div class="menu-header">
+            <button id="close-menu-btn">
+                <span>Close</span>
+                <div class="close-icon">×</div>
+            </button>
+        </div>
+    <div class="menu-content">
+            <div class="menu-nav">
+                <ul>
+                    <li><a href="page1.html">소개</a></li>
+                    <li><a href="index.html#portfolio">포트폴리오</a></li>
+                    <li><a href="page3.html">희망분야</a></li>
+                </ul>
+            </div>
+            <div class="menu-details">
+                <div class="detail-item">
+                    <span>TEL</span>
+                    <p>010-1234-1234</p>
+                </div>
+                <div class="detail-item">
+                    <span>FAX</span>
+                    <p>02-1234-1234</p>
+                </div>
+                <div class="detail-item">
+                    <span>E-MAIL</span>
+                    <p>yun64560276@gmail.com</p>
+                </div>
+                <div class="detail-item">
+                    <span>ADDRESS</span>
+                    <p>경성대학교</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <header class="header">
         <div class="container">
             <h1><a href="index.html">My Portfolio</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="page1.html" class="active">소개</a></li> 
-                    <li><a href="index.html#portfolio">포트폴리오</a></li>
-                    <li><a href="#contact">연락처</a></li>
-                </ul>
-            </nav>
+            <div class="header-right">
+                <nav>
+                    <ul>
+                        <li><a href="page1.html" class="active">소개</a></li> 
+                        <li><a href="index.html#portfolio">포트폴리오</a></li>
+                        <li><a href="page3.html">희망분야</a></li>
+                    </ul>
+                </nav>
+                <button class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </header>
 
     <main>
-        <div id="about" class="about-container">
-            <section class="about-section reveal-item">
-                <h2>나의 개발 철학</h2>
-                <p>저는 직관적이고 사용자 친화적인 솔루션을 만드는 데 열정을 가진 개발자입니다. 기술은 사람을 돕기 위해 존재한다고 믿으며, 복잡한 문제도 단순하고 우아하게 풀어내는 것을 목표로 합니다.</p>
-            </section>
+        <div id="about" class="about-container two-column-layout">
+            
+            <div class="column-left">
+                <img src="images/KakaoTalk_20250611_140909390.jpg" alt="윤진성 프로필 사진">
+            </div>
 
-            <section class="about-section reveal-item">
-                <h2>보유 기술 (Skills)</h2>
-                <ul class="skills-list">
-                    <li>HTML5 & CSS3 (Flexbox, Grid)</li>
-                    <li>JavaScript (ES6+) & TypeScript</li>
-                    <li>React & Vue.js</li>
-                    <li>Node.js</li>
-                    <li>Python (Django, Flask)</li>
-                    <li>SQL & NoSQL (MySQL, MongoDB)</li>
-                </ul>
-            </section>
+            <div class="column-right">
+                <section class="about-section reveal-item">
+                    <h2>기술의 심장을 이해하는 크리에이터</h2>
+                    <p>하나의 영상이 완성되기까지, 모든 프레임과 픽셀에는 창작자의 철학과 기술의 역사가 담겨있습니다. 저는 미디어콘텐츠학과에서 영상 언어의 깊이를 배우며, 단순한 편집자를 넘어 기술의 근원을 탐구하는 크리에이터로 성장하고 있습니다. 화려한 영상미를 구현하는 소프트웨어의 힘은, 그것을 뒷받침하는 최적의 하드웨어 성능에서 비롯된다는 것을 잘 알고 있습니다.</p>
+                </section>
 
-            <section class="about-section reveal-item">
-                <h2>주요 경력</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h4>프론트엔드 개발자 (2022 - 현재)</h4>
-                        <p><strong>(주)어떤회사</strong> - 주요 웹 서비스의 UI/UX를 개선하고 새로운 기능을 개발했습니다.</p>
+                <section class="about-section reveal-item">
+                    <h2>보유 기술 (Skills)</h2>
+                    <ul class="skills-list">
+                        <li>
+                            <strong>Adobe After Effects (주력)</strong><br>
+                            상상하는 모든 움직임을 현실로 만듭니다. 정교한 모션그래픽과 VFX를 통해 메시지에 생명력을 불어넣는 작업에 능숙합니다.
+                        </li>
+                        <li>Adobe Premiere Pro, Photoshop, Illustrator</li>
+                        <li>Cinema 4D (C4D) 기초 모델링 및 렌더링</li>
+                        <li>
+                            <strong>PC 하드웨어 지식 및 워크스테이션 최적화</strong><br>
+                            최상의 결과물은 최적의 환경에서 나옵니다. 렌더링 속도를 단축하고 안정적인 작업을 위한 워크스테이션 구성 및 PC 조립, 최적화에 대한 깊은 이해를 갖추고 있습니다.
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="about-section reveal-item">
+                    <h2>주요 경험 (Experience)</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>[프로젝트] 2024 한자 공모전, 부산 영상 공모전</h4>
+                            <p>기획부터 편집, 최종 모션그래픽까지 1인으로 제작하여 역동적인 한자 공모전 영상을 제작하여 입선이라는 결과를 얻음. 또한 부산 영상 공모전 또한 기획, 촬영, 편집을 1인으로 제작하여 출품함.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>[개인 채널] 보이는 라디오</h4>
+                            <p>2025학년도 영상콘텐츠기획 수업을 통해 보이는 라디오로 PC 하드웨어 성능이 실제 영상 렌더링 및 편집 작업에 미치는 영향을 분석하고 리뷰하는 영상 콘텐츠를 직접 기획하고 제작하며, 기술과 크리에이티브의 접점을 탐구하여 크리에이터로서의 역량도 발휘함.</p>
+                        </div>
                     </div>
-                    <div class="timeline-item">
-                        <h4>주니어 개발자 (2020 - 2022)</h4>
-                        <p><strong>(주)시작회사</strong> - 웹 개발의 기초를 다지고 유지보수 업무를 담당하며 성장했습니다.</p>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-             <section class="about-section reveal-item">
-                <h2>저는 이런 사람입니다</h2>
-                <p>새로운 기술을 배우는 것을 두려워하지 않으며, 동료들과의 협업과 소통을 중요하게 생각합니다. 언제나 긍정적인 태도로 문제 해결에 임합니다.</p>
-            </section>
+                <section class="about-section reveal-item">
+                    <h2>저의 목표</h2>
+                    <p>저는 창의성이 기술적 깊이를 만날 때 가장 강력한 시너지를 낸다고 믿습니다. 단순히 영상을 만드는 것을 넘어, 모든 콘텐츠 크리에이터들이 최상의 환경에서 창작에만 몰두할 수 있도록 돕는 PC 하드웨어 전문가로 성장하고 싶습니다. 기술의 심장을 이해하는 크리에이터, 그것이 제가 추구하는 모습입니다.</p>
+                </section>
+            </div>
+            
         </div>
     </main>
 
     <footer id="contact" class="footer">
         <div class="container">
-            <p>Email: myemail@example.com</p>
-            <p>&copy; 2025 OOO. All Rights Reserved.</p>
+            <p>Email: yun64560276@gmail.com</p>
+            <p>© 2025 윤진성. All Rights Reserved.</p>
         </div>
     </footer>
 

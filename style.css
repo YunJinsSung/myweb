@@ -166,6 +166,15 @@ Scroll Reveal 효과
     transform: translateY(0);
 }
 
+/* ... 다른 코드 ... */
+
+body {
+    /* ... 다른 속성 ... */
+    cursor: none; /* 이 코드가 기본 커서를 숨깁니다. */
+}
+
+/* ... 다른 코드 ... */
+
 /*
 ================================
 Custom Mouse Cursor
@@ -174,7 +183,7 @@ Custom Mouse Cursor
 .custom-cursor {
     width: 40px;
     height: 40px;
-    border: 1px solid white;
+    border: 1px solid white; /* 이 부분이 없으면 커서가 투명해서 보이지 않습니다. */
     border-radius: 50%;
     position: fixed;
     left: 0;
@@ -185,11 +194,7 @@ Custom Mouse Cursor
     transform: translate(-50%, -50%); 
 }
 
-.custom-cursor.grow {
-    transform: translate(-50%, -50%) scale(2);
-    background-color: white;
-    mix-blend-mode: difference;
-}
+/* ... 다른 코드 ... */
 /* 기본 스타일 초기화 */
 * {
     margin: 0;
@@ -651,4 +656,256 @@ body.nav-open .overlay-menu {
     background-color: white;
     border-color: white;
     color: #000;
+}
+
+/*
+/*
+=====================================================
+About Page - Interactive Layout with 3D Flip & Scale
+=====================================================
+*/
+
+/* 소개 페이지 초기 상태에서 스크롤 방지 */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* 두 컬럼을 감싸는 메인 컨테이너 */
+.two-column-layout {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - 160px); 
+}
+
+/* 왼쪽 컬럼 (사진) - 초기 상태 */
+.column-left {
+    position: absolute;
+    width: 300px;
+    left: 50%;
+    top: 50%;
+    /* ↓↓↓ 초기 상태의 회전값과 크기를 정의합니다. ↓↓↓ */
+    transform: translate(-50%, -50%) rotateY(0deg) scale(1);
+    transform-style: preserve-3d; /* 3D 효과를 위한 필수 속성 */
+    cursor: pointer;
+    z-index: 10;
+    /* transform을 포함한 모든 속성 변경에 애니메이션 적용 */
+    transition: all 1s cubic-bezier(0.7, 0, 0.1, 1);
+}
+
+.column-left img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* 오른쪽 컬럼 (텍스트) - 초기 상태 */
+.column-right {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease-out 0.5s, transform 0.6s ease-out 0.5s; /* 딜레이를 살짝 조정 */
+    flex: 3; /* 1:3 비율로 너비 설정 */
+}
+
+
+/* ===== 활성 상태 (Active State) - 사진 클릭 후 ===== */
+
+.two-column-layout.active {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    min-height: 0;
+}
+
+.two-column-layout.active .column-left {
+    position: sticky;
+    top: 120px;
+    width: 100%;
+    left: auto;
+    /* ↓↓↓ 클릭 후, Y축으로 360도 회전하고 90% 크기로 축소됩니다. ↓↓↓ */
+    transform: rotateY(360deg) scale(0.9);
+    flex: 1; /* 1:3 비율로 너비 설정 */
+}
+
+.two-column-layout.active .column-right {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+
+/* 화면이 992px보다 작아졌을 때 (모바일/태블릿) */
+@media (max-width: 992px) {
+    /* 초기 상태 사진 크기 조절 */
+    .column-left {
+        width: 250px; 
+    }
+    
+    .two-column-layout.active {
+        flex-direction: column;
+    }
+
+    .two-column-layout.active .column-left {
+        position: static;
+        width: 70%;
+        margin: 0 auto 2rem auto;
+        transform: none; /* 모바일에서는 3D 효과 비활성화 */
+    }
+}
+/*
+=====================================================
+About Page - Interactive Two Column Layout
+=====================================================
+*/
+
+/* 두 컬럼을 감싸는 메인 컨테이너 */
+.two-column-layout {
+    position: relative;
+    width: 100%;
+    min-height: 80vh; /* 최소 높이를 지정하여 사진이 중앙에 올 수 있도록 함 */
+    display: flex; /* 기본적으로 flex를 유지하되, 아래에서 상태별로 조절 */
+    align-items: center; /* 수직 중앙 정렬 */
+}
+
+/* 왼쪽 컬럼 (사진) */
+.column-left {
+    /* 초기 상태 (가운데 배치) */
+    position: absolute;
+    width: 300px; /* 초기 사진 크기 */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.8s cubic-bezier(0.86, 0, 0.07, 1); /* 부드러운 애니메이션 */
+}
+
+.column-left img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* 오른쪽 컬럼 (텍스트) */
+.column-right {
+    /* 초기 상태 (숨김) */
+    opacity: 0;
+    pointer-events: none; /* 클릭되지 않도록 */
+    transform: translateX(50px); /* 오른쪽에서 나타나는 효과를 위해 살짝 이동 */
+    transition: opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s; /* 0.4초 딜레이 후 나타남 */
+}
+
+
+/* ===== 활성 상태 (Active State) - JavaScript로 'active' 클래스가 추가됐을 때 ===== */
+
+.two-column-layout.active .column-left {
+    /* 활성 상태 (왼쪽으로 이동) */
+    position: relative; /* absolute 해제 */
+    width: 100%; /* 너비를 flex 비율에 맞게 초기화 */
+    left: 0;
+    top: 0;
+    transform: none; /* 중앙 정렬 해제 */
+    flex: 1; /* 1:2 비율로 너비 설정 */
+}
+
+.two-column-layout.active .column-right {
+    /* 활성 상태 (나타남) */
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+    flex: 2; /* 1:2 비율로 너비 설정 */
+}
+
+/* 모바일 반응형 코드는 그대로 유지합니다 */
+@media (max-width: 992px) {
+    /* ... (이전 답변의 모바일 CSS 코드) ... */
+}
+/*
+/*
+=====================================================
+About Page - Interactive Two Column Layout (최종 수정본)
+=====================================================
+*/
+
+/* ↓↓↓ 이 부분을 추가/확인하세요! ↓↓↓ */
+/* 소개 페이지 초기 상태에서 스크롤 방지 */
+body.no-scroll {
+    overflow: hidden;
+}
+
+/* 두 컬럼을 감싸는 메인 컨테이너 */
+.two-column-layout {
+    position: relative;
+    width: 100%;
+    /* 전체 화면 높이에서 헤더와 푸터의 대략적인 높이를 뺀 값으로 설정 */
+    min-height: calc(100vh - 160px); 
+}
+
+/* 왼쪽 컬럼 (사진) - 초기 상태 */
+.column-left {
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%) rotateY(0deg);
+    transform-style: preserve-3d;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 1s cubic-bezier(0.7, 0, 0.1, 1);
+}
+
+.column-left img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* 오른쪽 컬럼 (텍스트) - 초기 상태 */
+.column-right {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(50px);
+    transition: opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s;
+    flex: 2;
+}
+
+/* ===== 활성 상태 (Active State) - JavaScript로 'active' 클래스가 추가됐을 때 ===== */
+
+.two-column-layout.active {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    min-height: 0;
+}
+
+.two-column-layout.active .column-left {
+    position: sticky;
+    top: 120px;
+    width: 100%;
+    left: auto;
+    transform: none rotateY(360deg);
+    flex: 1;
+}
+
+.two-column-layout.active .column-right {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+
+/* 화면이 992px보다 작아졌을 때 (모바일/태블릿) */
+@media (max-width: 992px) {
+    .two-column-layout.active {
+        flex-direction: column;
+    }
+
+    .two-column-layout.active .column-left {
+        position: static;
+        width: 70%;
+        margin: 0 auto 2rem auto;
+    }
 }

@@ -73,25 +73,76 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementById('close-menu-btn');
     const menuLinks = document.querySelectorAll('.menu-nav a');
 
-    // 열기: 햄버거 버튼 클릭 시
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             document.body.classList.add('nav-open');
         });
     }
 
-    // 닫기: Close 버튼 클릭 시
     if (closeBtn) {
         closeBtn.addEventListener('click', () => {
             document.body.classList.remove('nav-open');
         });
     }
     
-    // 닫기: 메뉴 안의 링크 클릭 시
     menuLinks.forEach(link => {
         link.addEventListener('click', () => {
             document.body.classList.remove('nav-open');
         });
     });
+
+    // ==================================================
+    // 5. 마우스 오버 시 비디오 재생 (Hover to Play Video)
+    // ==================================================
+    const hoverVideos = document.querySelectorAll('.hover-to-play');
+
+    hoverVideos.forEach(video => {
+        video.addEventListener('mouseover', () => {
+            video.play();
+        });
+
+        video.addEventListener('mouseout', () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+    });
+
+    // ==================================================
+  // script.js 파일
+
+// ==================================================
+// 6. 소개 페이지 인터랙티브 레이아웃 (스크롤 버그 수정)
+// ==================================================
+const interactiveLayout = document.querySelector('.two-column-layout');
+const clickableColumn = document.querySelector('.column-left');
+
+// 해당 요소들이 페이지에 있을 경우에만 실행
+if (interactiveLayout && clickableColumn) {
+    clickableColumn.addEventListener('click', () => {
+        
+        // 현재 레이아웃이 활성화(펼쳐진) 상태인지 확인
+        if (interactiveLayout.classList.contains('active')) {
+            // [닫을 때의 동작]
+            // 먼저 페이지를 부드럽게 맨 위로 스크롤합니다.
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            // 스크롤 애니메이션이 보일 약간의 시간(0.3초)을 준 뒤에
+            // 레이아웃을 초기 상태로 되돌립니다.
+            setTimeout(() => {
+                interactiveLayout.classList.remove('active');
+                document.body.classList.add('no-scroll');
+            }, 300); // 300ms = 0.3초
+
+        } else {
+            // [열 때의 동작]
+            // 즉시 레이아웃을 펼치고 스크롤을 허용합니다.
+            interactiveLayout.classList.add('active');
+            document.body.classList.remove('no-scroll');
+        }
+    });
+}
 
 });
